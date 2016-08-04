@@ -1,4 +1,4 @@
-package com.netease.nim.demo.RedEnvelope;
+package com.netease.nim.demo.redenvelope.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

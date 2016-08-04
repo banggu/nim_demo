@@ -14,22 +14,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
             <com.netease.nim.uikit.common.ui.imageview.HeadImageView
-                android:id="@+id/self_image"
+                android:id="@+id/iv_sender_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_logo"/>
             <TextView
-                android:id="@+id/friend_name"
+                android:id="@+id/tv_sender_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ABC的红包"
                 android:textSize="20sp"/>
             <TextView
-                android:id="@+id/friend_message"
+                android:id="@+id/tv_sender_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="恭喜发财，大吉大利"
@@ -37,7 +36,7 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/red_envelope_record"
+        android:id="@+id/ll_redenvelope_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -51,36 +50,40 @@
             android:text="1个红包"
             android:textSize="14sp"/>
         <RelativeLayout
-            android:id="@+id/record_item"
+            android:id="@+id/rl_record_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp">
             <com.netease.nim.uikit.common.ui.imageview.HeadImageView
-                android:id="@+id/iv_friend_img"
+                android:id="@+id/iv_receiver_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_logo"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"/>
             <TextView
-                android:id="@+id/tv_friend_name"
+                android:id="@+id/tv_receiver_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/iv_friend_img"
+                android:layout_toRightOf="@+id/iv_receiver_image"
                 android:text="ABC"
                 android:layout_marginBottom="10dp"/>
             <TextView
                 android:id="@+id/tv_receive_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/iv_friend_img"
+                android:layout_toRightOf="@+id/iv_receiver_image"
                 android:text="7月26日 15:30"
-                android:layout_below="@+id/tv_friend_name"/>
+                android:layout_below="@+id/tv_receiver_name"/>
             <TextView
-                android:id="@+id/receive_money"
+                android:id="@+id/tv_receiver_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.01元"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"/>
         </RelativeLayout>
         <ImageView
             android:layout_width="match_parent"

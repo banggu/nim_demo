@@ -173,7 +173,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
                 return;
             }
 
-            int last = messages.size()-1;
+            int last = messages.size() - 1;
             IMMessage message = messages.get(last);
             if (messageListPanel.isMyMessage(message) && message.getMsgType() == MsgTypeEnum.tip) {
                 Map<String, Object> remoteExtension = message.getRemoteExtension();
@@ -183,44 +183,47 @@ public class MessageFragment extends TFragment implements ModuleProxy {
                     final String messageId = message.getRemoteExtension().get("targetId").toString();
                     NIMClient.getService(MsgService.class).updateIMMessage(message);
                     messages.set(last, message);
-
+                    //遍历本地自定义消息的历史记录，找到Tip消息响应的自定义消息，并刷新其本地拓展字段
                     RequestCallback<List<IMMessage>> callback = new RequestCallbackWrapper<List<IMMessage>>() {
                         @Override
                         public void onResult(int code, List<IMMessage> messages, Throwable exception) {
                             if (messages != null) {
-                                Log.i("HZWING", messages.size()+"===================");
-                                int n = messages.size()-1;
-                                for(int j=0;j<=n;j++){
+                                int n = messages.size() - 1;
+                                for (int j = 0; j <= n; j++) {
                                     IMMessage msg = messages.get(j);
-                                    if (messageListPanel.isMyMessage(msg)){
-                                        Map<String, Object> data = msg.getRemoteExtension();
-                                        if(data != null){
-                                            String temp = data.get("messageId").toString();
-                                            if(messageId.equals(temp)){
-                                                data.put("isOpen", 1);
-                                                msg.setLocalExtension(data);
-                                                NIMClient.getService(MsgService.class).updateIMMessage(msg);
-                                                Log.i("HZWING", temp+"-------------------");
-                                            }
+                                    Map<String, Object> data = msg.getRemoteExtension();
+                                    if (messageListPanel.isMyMessage(msg) && data != null) {
+                                        String temp = data.get("messageId").toString();
+                                        if (messageId.equals(temp)) {
+                                            data.put("isOpen", 1);
+                                            msg.setLocalExtension(data);
+                                            NIMClient.getService(MsgService.class).updateIMMessage(msg);
+                                            reloadList();
+                                            break;
                                         }
                                     }
-                                }
+                                }//end for
                             }
                         }
                     };
+                    //搜索本地自定义消息记录
                     NIMClient.getService(MsgService.class).queryMessageListByType(MsgTypeEnum.custom, message, 100).setCallback(callback);
-
-
 
                 }
             }
-
 
             messageListPanel.onIncomingMessage(messages);
 
             sendMsgReceipt(); // 发送已读回执
         }
     };
+
+    private void reloadList() {
+        sessionId = getArguments().getString(Extras.EXTRA_ACCOUNT);
+        sessionType = (SessionTypeEnum) getArguments().getSerializable(Extras.EXTRA_TYPE);
+        Container container = new Container(getActivity(), sessionId, sessionType, this);
+        messageListPanel.reload(container, null);
+    }
 
     private Observer<List<MessageReceipt>> messageReceiptObserver = new Observer<List<MessageReceipt>>() {
         @Override

@@ -3,9 +3,8 @@ package com.netease.nim.demo.session.action;
 import android.content.Intent;
 import android.util.Log;
 
-import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.R;
-import com.netease.nim.demo.RedEnvelope.CreateRedEnvelopeActivity;
+import com.netease.nim.demo.redenvelope.activity.CreateRedEnvelopeActivity;
 import com.netease.nim.demo.session.extension.RedEnvelopeAttachment;
 import com.netease.nim.uikit.session.actions.BaseAction;
 import com.netease.nimlib.sdk.chatroom.ChatRoomMessageBuilder;

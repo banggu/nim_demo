@@ -289,12 +289,12 @@
 
         <!-- 紅包 -->
         <activity
-            android:name=".RedEnvelope.CreateRedEnvelopeActivity"
+            android:name=".redenvelope.activity.CreateRedEnvelopeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
-            android:name=".RedEnvelope.RedEnvelopeDetailActivity"
+            android:name=".redenvelope.activity.RedEnvelopeDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize"/>

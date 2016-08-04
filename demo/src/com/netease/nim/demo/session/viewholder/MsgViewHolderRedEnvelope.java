@@ -12,14 +12,12 @@ import android.widget.TextView;
 
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.R;
-import com.netease.nim.demo.RedEnvelope.RedEnvelopeDetailActivity;
+import com.netease.nim.demo.redenvelope.activity.RedEnvelopeDetailActivity;
 import com.netease.nim.demo.session.extension.RedEnvelopeAttachment;
 import com.netease.nim.uikit.session.viewholder.MsgViewHolderBase;
 import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.MsgService;
-import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.model.CustomMessageConfig;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 
@@ -173,6 +171,9 @@ public class MsgViewHolderRedEnvelope extends MsgViewHolderBase {
         intent.setClass(context, RedEnvelopeDetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("message", message);
+        if(message.getLocalExtension() != null){
+            Log.i("HZWING", "==================="+message.getLocalExtension().get("isOpen").toString());
+        }
         bundle.putString("role", role);
         intent.putExtras(bundle);
         context.startActivity(intent);
