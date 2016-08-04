@@ -14,6 +14,7 @@ import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomMessageConfig;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,7 +58,7 @@ public class RedEnvelopeAction extends BaseAction {
                     if(message.getRemoteExtension() == null){
                         Map<String, Object> extendData = new HashMap<>();
                         extendData.put("isOpen", 0);
-                        extendData.put("messageId", getAccount()+"_"+getSessionType());
+                        extendData.put("messageId", getAccount()+"_"+getSessionType()+"_"+new Date());
                         message.setRemoteExtension(extendData);
                     }
 

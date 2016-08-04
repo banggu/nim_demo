@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.uikit.common.activity.UI;
@@ -76,13 +77,22 @@ public class CreateRedEnvelopeActivity extends UI implements View.OnClickListene
     public void onClick(View v) {
         Bundle bundle = new Bundle();
         Intent intent = new Intent();
+        String lucky_money = et_lucky_money.getText().toString();
+        String left_message = et_left_message.getText().toString();
         switch(v.getId()){
             case R.id.back :
                 finish();
                 break;
             case R.id.tv_create_red_envelope :
-                bundle.putString("lucky_money", et_lucky_money.getText().toString());
-                bundle.putString("left_message", et_left_message.getText().toString());
+                if(TextUtils.isEmpty(lucky_money)){
+                    Toast.makeText(this, "请输入金额", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                if(left_message == ""){
+                    left_message = "恭喜发财，大吉大利";
+                }
+                bundle.putString("lucky_money", lucky_money);
+                bundle.putString("left_message", left_message);
                 intent.putExtras(bundle);
                 CreateRedEnvelopeActivity.this.setResult(RESULT_OK, intent);
                 finish();

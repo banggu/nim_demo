@@ -70,11 +70,13 @@ public class RedEnvelopeDetailActivity extends UI implements View.OnClickListene
     private void setContent(){
         actionBarTitle.setText("红包详情");
         RedEnvelopeAttachment attachment = (RedEnvelopeAttachment) mMessage.getAttachment();
-        Map<String, Object> localExtension = mMessage.getLocalExtension();
+        Map<String, Object> remoteExtension = mMessage.getRemoteExtension();
+        int isOpen = Integer.parseInt(remoteExtension.get("isOpen").toString());
         String message = attachment.getLeftMessage();
         String money = attachment.getLuckyMoney();
         friendName.setText(mMessage.getFromNick());
         friendMessage.setText(message);
+        //根据角色显示界面
         if(mRole.equals("receiver")){
             left_message_panel.setVisibility(View.VISIBLE);
             red_envelope_record.setVisibility(View.GONE);
@@ -82,13 +84,14 @@ public class RedEnvelopeDetailActivity extends UI implements View.OnClickListene
         }else{
             left_message_panel.setVisibility(View.GONE);
             red_envelope_record.setVisibility(View.VISIBLE);
-            if(localExtension == null){
+
+            if(isOpen == 0){
                 tv_redenvelope_tip.setText("红包金额" + money + "元，等待对方领取");
                 record_item.setVisibility(View.GONE);
             }else{
                 tv_redenvelope_tip.setText("一个红包共"+money+"元");
                 record_item.setVisibility(View.VISIBLE);
-                tv_friend_name.setText(localExtension.get("messageId").toString().split("_")[0]);
+                tv_friend_name.setText(remoteExtension.get("messageId").toString().split("_")[0]);
                 receive_money.setText(money);
             }
         }

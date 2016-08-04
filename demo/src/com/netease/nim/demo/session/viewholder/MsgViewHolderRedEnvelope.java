@@ -23,6 +23,7 @@ import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.model.CustomMessageConfig;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -77,6 +78,7 @@ public class MsgViewHolderRedEnvelope extends MsgViewHolderBase {
         } else {
             isMsgOpen = Integer.parseInt(localExtension.get("isOpen").toString());
         }
+        Log.i("HZWING", isMsgOpen+"");
         if (!sender.equals(DemoCache.getAccount())) {
             if(isMsgOpen == 0){
                 //打开红包
@@ -92,6 +94,7 @@ public class MsgViewHolderRedEnvelope extends MsgViewHolderBase {
                 toRedEnveloptDetail("receiver");
             }
         }else{
+            Log.i("HZWING", message.getRemoteExtension().get("messageId").toString());
             toRedEnveloptDetail("sender");
         }
     }
@@ -123,9 +126,8 @@ public class MsgViewHolderRedEnvelope extends MsgViewHolderBase {
                     @Override
                     public void run() {
                         alertDialog.dismiss();
-                        toRedEnveloptDetail("receiver");
-                        Log.i("HZWING", context.toString());
                         receiveRedEnvelope();
+                        toRedEnveloptDetail("receiver");
                     }
                 }, 500);
             }
@@ -154,7 +156,8 @@ public class MsgViewHolderRedEnvelope extends MsgViewHolderBase {
         //设置拓展字段
         Map<String, Object> data = new HashMap<>();
         data.put("isOpen", 1);
-        data.put("messageId", message.getFromAccount() + "_" + message.getSessionType());
+        data.put("messageId", message.getFromAccount() + "_" + message.getSessionType()+"_"+new Date());
+        data.put("targetId", message.getRemoteExtension().get("messageId").toString());
         msgToFriend.setRemoteExtension(data);
         msgToFriend.setLocalExtension(data);
         message.setLocalExtension(data);

@@ -222,6 +222,7 @@ public class MessageListPanel implements TAdapterDelegate {
         List<IMMessage> addedListItems = new ArrayList<>(messages.size());
         for (IMMessage message : messages) {
             if (isMyMessage(message)) {
+                Log.i("QWE", message.getContent());
                 items.add(message);
                 addedListItems.add(message);
                 needRefresh = true;

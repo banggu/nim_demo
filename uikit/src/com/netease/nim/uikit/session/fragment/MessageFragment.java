@@ -22,9 +22,12 @@ import com.netease.nim.uikit.session.module.input.InputPanel;
 import com.netease.nim.uikit.session.module.list.MessageListPanel;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.MsgServiceObserve;
+import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomMessageConfig;
@@ -33,6 +36,7 @@ import com.netease.nimlib.sdk.msg.model.MessageReceipt;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 聊天界面基类
@@ -169,14 +173,32 @@ public class MessageFragment extends TFragment implements ModuleProxy {
                 return;
             }
 
-            for(int i=0;i<messages.size();i++){
-                IMMessage message = messages.get(i);
-                if(messageListPanel.isMyMessage(message) && message.getMsgType() == MsgTypeEnum.tip){
-                    message.setContent(message.getFromNick()+"领取了你的红包");
-                    messages.set(i, message);
-                    Log.i("HZWING", "1111111111111111");
+            int last = messages.size()-1;
+            IMMessage message = messages.get(last);
+            if (messageListPanel.isMyMessage(message) && message.getMsgType() == MsgTypeEnum.tip) {
+                Map<String, Object> remoteExtension = message.getRemoteExtension();
+                int isOpen = Integer.parseInt(remoteExtension.get("isOpen").toString());
+                if (isOpen == 1) {
+                    message.setContent(message.getFromNick() + "领取了你的红包");
+                    String messageId = message.getRemoteExtension().get("targetId").toString();
+                    NIMClient.getService(MsgService.class).updateIMMessage(message);
+                    messages.set(last, message);
+                    
+                    RequestCallback<List<IMMessage>> callback = new RequestCallbackWrapper<List<IMMessage>>() {
+                        @Override
+                        public void onResult(int code, List<IMMessage> messages, Throwable exception) {
+                            if (messages != null) {
+
+                            }
+                        }
+                    };
+                    NIMClient.getService(MsgService.class).queryMessageListByType(MsgTypeEnum.custom, message, 100).setCallback(callback);
+
+
+
                 }
             }
+
 
             messageListPanel.onIncomingMessage(messages);
 
