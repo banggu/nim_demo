@@ -180,15 +180,31 @@ public class MessageFragment extends TFragment implements ModuleProxy {
                 int isOpen = Integer.parseInt(remoteExtension.get("isOpen").toString());
                 if (isOpen == 1) {
                     message.setContent(message.getFromNick() + "领取了你的红包");
-                    String messageId = message.getRemoteExtension().get("targetId").toString();
+                    final String messageId = message.getRemoteExtension().get("targetId").toString();
                     NIMClient.getService(MsgService.class).updateIMMessage(message);
                     messages.set(last, message);
-                    
+
                     RequestCallback<List<IMMessage>> callback = new RequestCallbackWrapper<List<IMMessage>>() {
                         @Override
                         public void onResult(int code, List<IMMessage> messages, Throwable exception) {
                             if (messages != null) {
-
+                                Log.i("HZWING", messages.size()+"===================");
+                                int n = messages.size()-1;
+                                for(int j=0;j<=n;j++){
+                                    IMMessage msg = messages.get(j);
+                                    if (messageListPanel.isMyMessage(msg)){
+                                        Map<String, Object> data = msg.getRemoteExtension();
+                                        if(data != null){
+                                            String temp = data.get("messageId").toString();
+                                            if(messageId.equals(temp)){
+                                                data.put("isOpen", 1);
+                                                msg.setLocalExtension(data);
+                                                NIMClient.getService(MsgService.class).updateIMMessage(msg);
+                                                Log.i("HZWING", temp+"-------------------");
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     };
