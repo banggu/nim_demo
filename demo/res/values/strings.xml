@@ -239,9 +239,17 @@
     <!-- 紅包 -->
     <string name="redenvelope_per_money">单个金额</string>
     <string name="redenvelope_left_message">留言</string>
-    <string name="redenvelope_unit">元</string>
-    <string name="redenvelope_hint">恭喜发财，大吉大利</string>
+    <string name="redenvelope_rmb_unit">元</string>
+    <string name="redenvelope_quantity_unit">个</string>
+    <string name="redenvelope_hint">恭喜发财，大吉大利！</string>
     <string name="redenvelope_final_money">￥0.00</string>
     <string name="redenvelope_receive">领取红包</string>
     <string name="redenvelope_tip">已存入零钱，可直接消费</string>
+    <string name="redenvelope_num">红包个数</string>
+    <string name="redenvelope_total_money">总金额</string>
+    <string name="redenvelope_normal_tip">群里每人收到固定金额，</string>
+    <string name="redenvelope_random_tip">每人抽到的金额随机，</string>
+    <string name="redenvelope_normal">改为普通红包，</string>
+    <string name="redenvelope_random">改为拼手气红包，</string>
+    <string name="redenvelope_empty">你来晚了，红包没有了</string>
 </resources>

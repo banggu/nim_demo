@@ -6,6 +6,112 @@
     android:background="@color/hongbao_bg_F6EBBC">
     <include layout="@layout/action_bar_layout"/>
     <LinearLayout
+        android:id="@+id/ll_team_redenvelope"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@color/hongbao_white_fff"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/redenvelope_num"
+                android:textSize="16sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"/>
+            <EditText
+                android:id="@+id/et_redenvelope_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:background="@null"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:ems="10"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/redenvelope_quantity_unit"
+                android:textSize="16sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_member_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本群共5人"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@color/hongbao_white_fff"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+            <TextView
+                android:id="@+id/tv_money_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/redenvelope_total_money"
+                android:textSize="16sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"/>
+            <EditText
+                android:id="@+id/et_total_money"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:background="@null"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:ems="10"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/redenvelope_rmb_unit"
+                android:textSize="16sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_type_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="每人抽到的金额随机，"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/tv_redenvelope_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="改为普通红包"
+                android:textColor="@color/color_blue_0888ff"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_lucky_money"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -28,21 +134,24 @@
             android:inputType="numberDecimal"
             android:background="@null"
             android:layout_gravity="center_vertical"
-            android:ems="10"/>
+            android:gravity="right"
+            android:ems="10"
+            android:layout_marginRight="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/redenvelope_unit"
+            android:text="@string/redenvelope_rmb_unit"
             android:textSize="16sp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="10dp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="@color/hongbao_white_fff"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp">
         <TextView
@@ -57,11 +166,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="right"
             android:inputType="textMultiLine"
             android:background="@null"
             android:layout_gravity="center_vertical"
             android:ems="10"
-            android:hint="@string/redenvelope_hint"/>
+            android:hint="@string/redenvelope_hint"
+            android:layout_marginRight="10dp"/>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -87,7 +198,7 @@
             android:textSize="25sp"
             android:textColor="@color/hongbao_white_fff"
             android:background="@color/hongbao_red_D7483C"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="15dp"
             android:layout_centerInParent="true"
             android:gravity="center"/>
     </RelativeLayout>

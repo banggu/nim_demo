@@ -61,13 +61,14 @@ import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.team.model.Team;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * UIKit自定义消息界面用法展示类
  */
-public class SessionHelper {
+public class SessionHelper{
 
     private static final int ACTION_HISTORY_QUERY = 0;
     private static final int ACTION_SEARCH_MESSAGE = 1;
@@ -261,6 +262,7 @@ public class SessionHelper {
             actions.add(new GuessAction());
             actions.add(new FileAction());
             actions.add(new TipAction());
+            actions.add(new RedEnvelopeAction());
             teamCustomization.actions = actions;
 
             // 定制ActionBar右边的按钮，可以加多个

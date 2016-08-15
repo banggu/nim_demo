@@ -3,11 +3,13 @@ package com.netease.nim.uikit.session.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import com.android.volley.RequestQueue;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.Volley;
 import com.netease.nim.uikit.R;
 import com.netease.nim.uikit.cache.FriendDataCache;
 import com.netease.nim.uikit.cache.SimpleCallback;
@@ -32,6 +34,7 @@ import java.util.List;
 public class TeamMessageActivity extends BaseMessageActivity {
 
     // model
+
     private Team team;
 
     private View invalidTeamTipView;
@@ -242,4 +245,5 @@ public class TeamMessageActivity extends BaseMessageActivity {
             finish();
         }
     }
+
 }

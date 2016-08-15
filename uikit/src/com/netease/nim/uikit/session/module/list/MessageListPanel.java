@@ -222,7 +222,9 @@ public class MessageListPanel implements TAdapterDelegate {
         List<IMMessage> addedListItems = new ArrayList<>(messages.size());
         for (IMMessage message : messages) {
             if (isMyMessage(message)) {
-                Log.i("QWE", message.getContent());
+                if(message.getMsgType() == MsgTypeEnum.custom && message.getSessionType() == SessionTypeEnum.Team){
+
+                }
                 items.add(message);
                 addedListItems.add(message);
                 needRefresh = true;

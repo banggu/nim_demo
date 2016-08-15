@@ -1,23 +1,34 @@
 package com.netease.nim.demo.redenvelope.model;
 
+import java.io.Serializable;
+
 /**
  * Created by GeiLe on 2016/8/4.
  */
-public class Opener {
+public class Opener implements Serializable{
+    private int id;
     private int packet_id;
-    private int user_id;
-    private String user_name;
-    private String user_img;
-    private String time;
+    private String user_id;
     private float money;
+    private String created_at;
 
-    public Opener(int packet_id, int user_id, String user_name, String user_img, String time, float money) {
+    public Opener() {
+    }
+
+    public Opener(int id, int packet_id, String user_id, float money, String created_at) {
+        this.id = id;
         this.packet_id = packet_id;
         this.user_id = user_id;
-        this.user_name = user_name;
-        this.user_img = user_img;
-        this.time = time;
         this.money = money;
+        this.created_at = created_at;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPacket_id() {
@@ -28,36 +39,12 @@ public class Opener {
         this.packet_id = packet_id;
     }
 
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
-    }
-
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-
-    public String getUser_img() {
-        return user_img;
-    }
-
-    public void setUser_img(String user_img) {
-        this.user_img = user_img;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public float getMoney() {
@@ -66,5 +53,13 @@ public class Opener {
 
     public void setMoney(float money) {
         this.money = money;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 }

@@ -172,7 +172,6 @@ public class MessageFragment extends TFragment implements ModuleProxy {
             if (messages == null || messages.isEmpty()) {
                 return;
             }
-
             int last = messages.size() - 1;
             IMMessage message = messages.get(last);
             if (messageListPanel.isMyMessage(message) && message.getMsgType() == MsgTypeEnum.tip) {
@@ -180,7 +179,8 @@ public class MessageFragment extends TFragment implements ModuleProxy {
                 int isOpen = Integer.parseInt(remoteExtension.get("isOpen").toString());
                 if (isOpen == 1) {
                     message.setContent(message.getFromNick() + "领取了你的红包");
-                    final String messageId = message.getRemoteExtension().get("targetId").toString();
+                    final String messageId = message.getRemoteExtension().get("messageId").toString();
+                    Log.i("HZWING", messageId+"=====================");
                     NIMClient.getService(MsgService.class).updateIMMessage(message);
                     messages.set(last, message);
                     //遍历本地自定义消息的历史记录，找到Tip消息响应的自定义消息，并刷新其本地拓展字段
@@ -194,6 +194,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
                                     Map<String, Object> data = msg.getRemoteExtension();
                                     if (messageListPanel.isMyMessage(msg) && data != null) {
                                         String temp = data.get("messageId").toString();
+                                        Log.i("HZWING", temp+"--------------");
                                         if (messageId.equals(temp)) {
                                             data.put("isOpen", 1);
                                             msg.setLocalExtension(data);

@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nim_demo.iml" filepath="$PROJECT_DIR$/nim_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nim_demo1.iml" filepath="$PROJECT_DIR$/nim_demo1.iml" />
       <module fileurl="file://$PROJECT_DIR$/uikit/uikit.iml" filepath="$PROJECT_DIR$/uikit/uikit.iml" />
     </modules>
   </component>

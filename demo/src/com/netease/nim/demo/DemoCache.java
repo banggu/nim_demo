@@ -5,10 +5,12 @@ import android.content.Context;
 import com.netease.nim.uikit.NimUIKit;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 
+import java.io.Serializable;
+
 /**
  * Created by jezhee on 2/20/15.
  */
-public class DemoCache {
+public class DemoCache implements Serializable {
 
     private static Context context;
 

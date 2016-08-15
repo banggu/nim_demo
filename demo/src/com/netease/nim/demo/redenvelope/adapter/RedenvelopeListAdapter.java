@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.redenvelope.model.Opener;
 import com.netease.nim.uikit.common.ui.imageview.HeadImageView;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.uinfo.UserService;
+import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 
 import java.util.List;
 
@@ -55,9 +58,10 @@ public class RedenvelopeListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Opener opener = openerList.get(position);
-        viewHolder.receiverImg.loadBuddyAvatar(opener.getUser_img());
-        viewHolder.receiverName.setText(opener.getUser_name());
-        viewHolder.receiveTime.setText(opener.getTime());
+        NimUserInfo userInfo = NIMClient.getService(UserService.class).getUserInfo(opener.getUser_id()+"");
+        viewHolder.receiverImg.loadBuddyAvatar(opener.getUser_id()+"");
+        viewHolder.receiverName.setText(userInfo.getName());
+        viewHolder.receiveTime.setText(opener.getCreated_at());
         viewHolder.receiveMoney.setText(opener.getMoney()+"");
         return convertView;
     }
